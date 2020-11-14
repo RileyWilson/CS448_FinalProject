@@ -8,8 +8,6 @@ const createVisualization = async (params) => {
     // Visualization #1
     let svg = d3.select("body").append("svg");
     lib.createPlot(rawData, groupedData, svg);
-
-
 }
 
 export {createVisualization};
