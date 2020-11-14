@@ -3,7 +3,7 @@ import * as v1 from './Visualization_1'
 import * as v2 from './Visualization_2'
 import * as v3 from './Visualization_3'
 
-const myFunction = async (params) => {
+const createExplainer = async (params) => {
     
     let [rawData, groupedData] = await lib.getData();
 
@@ -22,4 +22,4 @@ const myFunction = async (params) => {
     v3.createVisualization(rawData, groupedData, svg3);
 }
 
-myFunction();
+createExplainer();

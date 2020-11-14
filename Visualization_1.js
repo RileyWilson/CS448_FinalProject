@@ -1,7 +1,7 @@
 'use strict';
 import * as lib from './lib/lib.js'
 
-const myFunction = async (params) => {
+const createVisualization = async (params) => {
     
     let [rawData, groupedData] = await lib.getData();
 
@@ -9,6 +9,7 @@ const myFunction = async (params) => {
     let svg = d3.select("body").append("svg");
     lib.createPlot(rawData, groupedData, svg);
 
+
 }
 
-myFunction();
+export {createVisualization};

@@ -1,7 +1,7 @@
 'use strict';
 import * as lib from './lib/lib.js'
 
-const myFunction = async (params) => {
+const createVisualization = async (params) => {
     
     let [rawData, groupedData] = await lib.getData();
 
@@ -11,4 +11,4 @@ const myFunction = async (params) => {
 
 }
 
-myFunction();
+export {createVisualization};
