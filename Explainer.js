@@ -1,7 +1,7 @@
 'use strict';
-import * as v1 from './Visualization_1'
-import * as v2 from './Visualization_2'
-import * as v3 from './Visualization_3'
+import * as v1 from 'Visualization_1'
+import * as v2 from 'Visualization_2'
+import * as v3 from 'Visualization_3'
 
 const createExplainer = async (params) => {
     
