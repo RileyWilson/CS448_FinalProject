@@ -70,8 +70,8 @@ function searchForTerm(term){
 
 function createSearchable(){
     
-    let textarea = d3.select(".searchDiv").append("textarea").attr("id", "TermSearchBox");
-    let button = d3.select(".searchDiv").append("button").attr("id", "TimeSearchButton").text("Search!");
+    let textarea = d3.select(".search-div").append("textarea").attr("id", "TermSearchBox");
+    let button = d3.select(".search-div").append("button").attr("id", "TimeSearchButton").text("Search!");
 
     button.on("click", function(d) {
         var searchTerm = textarea.property("value")
@@ -86,7 +86,7 @@ const createPlot = async (params) => {
     [rawData, topGroupedData, allTermData] = await lib1.getData();
 
     // Visualization #1
-    mySvg = d3.select(".searchDiv").append("svg");
+    mySvg = d3.select(".search-div").append("svg");
     lib1.createPlot(rawData, topGroupedData, mySvg);
 }
 
