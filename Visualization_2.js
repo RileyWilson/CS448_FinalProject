@@ -6,21 +6,19 @@ var searchTerms, groupedSearchData;
 var parseTime = d3.timeParse("%Y-%m-%d"); // can i export this from lib1
 var height = 800;
 var width = 1200;
-var margin = 100
-//var terms;
-//var bigrams;
-//var trigrams;
+var margin = 100;
+var dataIndex = 1;
 
 const main = async(params) => {
     displayTitle();
-    createPlot();
+    createPlot(dataIndex);
     addButtons();
 }
 
 function addButtons(){
 
-    /*
-    d3.select(".bubbleDiv").append('div').attr("class", "bubble-buttons");
+    
+    d3.select(".bubble-button-div").append('div').attr("class", "bubble-buttons");
 
     let buttonsDiv = d3.select(".bubble-buttons");
     
@@ -30,29 +28,45 @@ function addButtons(){
     
     buttonsForm.attr("id", "form").attr("class", "bubble-button-group").attr("data-toggle", "buttons");
     
-    
+    let buttonLabel1 = buttonsForm.append("label");
+    let buttonLabel2 = buttonsForm.append("label");
+    let buttonLabel3 = buttonsForm.append("label");
+    buttonLabel1.attr("class", "bubble-button-label").attr("id", "bubble-button-label-1").text("1-Word Phrases");
+    buttonLabel2.attr("class", "bubble-button-label").attr("id", "bubble-button-label-2").text("2-Word Phrases");
+    buttonLabel3.attr("class", "bubble-button-label").attr("id", "bubble-button-label-3").text("3-Word Phrases");
 
+    let button1 = buttonLabel1.append("input");
+    let button2 = buttonLabel2.append("input");
+    let button3 = buttonLabel3.append("input");
 
+    button1.attr("type", "radio").attr("value", "b1").attr("name", "bubble-button");
+    button2.attr("type", "radio").attr("value", "b2").attr("name", "bubble-button").attr("checked", "true");
+    button3.attr("type", "radio").attr("value", "b3").attr("name", "bubble-button");
 
-    <div class="bubbleButtons">
-    <br><br>
-    <p class="instructions">Choose your data:</p>
-    <form id="form" class="bubble-buton-group" data-toggle="buttons">
-      <label class="bubble-button-label" id="bubble-button-label-1">
-        <input type="radio" id="1-word-button" value="MRR" checked>1-WORD TERMS<br>
-      </label>
-      <label class="bubble-button-label" id="bubble-button-label-2">
-        <input type="radio" id="2-word-button" value="LYL">2-WORD PHRASES<br>
-      </label>
-      <label class="bubble-button-label" id="bubble-button-label-3">
-        <input type="radio" id="2-word-button" value="LYL">3-WORD PHRASES<br>
-      </label>
-    </form></div>*/
+    buttonLabel1.append("br");
+    buttonLabel2.append("br");
+    buttonLabel3.append("br");
+
+    // Add listener
+
+    const buttons = d3.selectAll('input');
+    buttons.on('change', function(d) {
+        console.log('button changed to ' + this.value);
+        d3.select(".bubble-svg").remove();
+        if (this.value == "b1"){
+            dataIndex = 0;
+        } else if (this.value == "b2"){
+            dataIndex = 1;
+        } else {
+            dataIndex = 3;
+        }
+        createPlot(dataIndex);
+    });
 }
 
 function displayTitle(){
         
-    var titleSvg = d3.select(".bubbleDiv").append("svg");
+    var titleSvg = d3.select(".bubble-button-div").append("svg");
     titleSvg.attr('width', width)
     .attr('height', 50)
 
@@ -87,14 +101,23 @@ function pack(data){
 
 const createPlot = async (params) => {
     
-    var svg = d3.select(".bubbleDiv").append("svg");
+    var svg = d3.select(".bubble-div").append("svg");
     svg.attr('width', width)
     .attr('height', height)
+    .attr('class', "bubble-svg")
     
     lib2.getData().then((value) => {
         //console.log("terms: " + JSON.stringify(value.terms));
+        var data;
+        if (dataIndex == 0){
+            data = value.terms;
+        } else if (dataIndex == 1){
+            data = value.bigrams;
+        } else {
+            data = value.trigrams;
+        }
 
-        const root = pack(value.terms);
+        const root = pack(data);
 
         console.log("root leaves: " + root.leaves());
     
@@ -111,6 +134,7 @@ const createPlot = async (params) => {
             .text(d => d.data.term)
             .style('text-anchor', 'middle')
             .attr("fill", "#231F20")
+            .attr("font-size", d => d.r > 40 ? "12px" : "6px")
             .attr("fill-opacity", 1);
 
         leaf.append("text")
