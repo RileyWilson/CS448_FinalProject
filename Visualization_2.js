@@ -29,7 +29,7 @@ function addButtons(){
     let buttonsForm = buttonsDiv.append('form');
     
     buttonsForm.attr("id", "form").attr("class", "bubble-button-group").attr("data-toggle", "buttons");
-    */
+    
     
 
 
@@ -47,7 +47,7 @@ function addButtons(){
       <label class="bubble-button-label" id="bubble-button-label-3">
         <input type="radio" id="2-word-button" value="LYL">3-WORD PHRASES<br>
       </label>
-    </form></div>
+    </form></div>*/
 }
 
 function displayTitle(){
