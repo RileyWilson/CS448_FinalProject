@@ -19,6 +19,7 @@ const main = async(params) => {
 
 function addButtons(){
 
+    /*
     d3.select(".bubbleDiv").append('div').attr("class", "bubble-buttons");
 
     let buttonsDiv = d3.select(".bubble-buttons");
@@ -28,7 +29,7 @@ function addButtons(){
     let buttonsForm = buttonsDiv.append('form');
     
     buttonsForm.attr("id", "form").attr("class", "bubble-button-group").attr("data-toggle", "buttons");
-
+    */
     
 
 
