@@ -1,0 +1,52 @@
+html {
+    font-family: "AppleGothic";
+}
+
+body {
+    background-color: #7EBDC2;
+    color: #231F20
+}
+
+h1 {
+    color: #231F20;
+    font-family: "AppleGothic";
+
+}
+
+p {
+    color:#231F20;
+}
+
+text{
+    font-family: "AppleGothic";
+    color: #231F20;
+}
+
+textarea{
+    background-color: #EFE6DD;
+}
+
+.section-header{
+    text-anchor: middle;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    stroke: #BB4430;
+    stroke-width: 2px;
+    stroke-opacity: 1;
+    /*background-color: #BB4430;*/
+    width: auto;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.section-div-1{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.instructions{
+    color: #BB4430;
+}
