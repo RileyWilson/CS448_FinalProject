@@ -7,10 +7,11 @@ import os.path as osp
 import TwitterSearch as tw
 import csv
 import json
+import time
 
-allTweetStrings = []
 
 def searchTwitter(keywords):
+    myReturnString = ""
     try:
         tso = tw.TwitterSearchOrder() # create TwitterSearchOrder
         tso.set_keywords(keywords) # all words to search
@@ -29,19 +30,20 @@ def searchTwitter(keywords):
         # this is where the fun actually starts :)
         count = 0
         for tweet in ts.search_tweets_iterable(tso):
-            time.sleep(4)
-            if (count >= 2):
+            #time.sleep(3)
+            if (count >= 1):
                 break
             myString = '@%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] )
             #print( '@%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] ) )
             print(myString)
             count += 1
-            allTweetStrings.append(myString);
+            myReturnString += myString
+            #allTweetStrings.append(myString);
 
     except tw.TwitterSearchException as e: # take care of all those ugly errors if there are some
         print(e)
 
-    return allTweetStrings
+    return myReturnString
     
 def main():
     
@@ -61,25 +63,20 @@ def main():
     outfile = open(output_file, 'w')
     infile = open(input_file, 'r')
 
-    allWordToTweetMaps = {}
+    #allWordToTweetMaps = {}
 
-    termIndex = 0;
+    termIndex = 0
     reader = csv.reader(infile, delimiter=',')
     for row in reader:
-        if (termIndex >= 200):
+        if (termIndex >= 150):
             break
         word = row[0]
-
-        if word in allWordToTweetMaps:
-            #nothing
-        else:
-            tweetStrings = searchTwitter([word]); 
-            allWordToTweetMaps[word] = tweetStrings
-        
+        tweetStrings = searchTwitter([word])
+        outfile.write(str({'term': word, 'tweets': tweetStrings, 'index': termIndex}))
         termIndex += 1
 
 
-    outfile.write(str(allWordToTweetMaps))
+    #outfile.write(str(allWordToTweetMaps))
 
 
 # main invoked here    
@@ -88,3 +85,10 @@ main()
 
 
 
+        #if word in allWordToTweetMaps:
+            #nothing
+           # print("hi")
+        #else:
+           # tweetStrings = searchTwitter([word]); 
+           # allWordToTweetMaps[word] = tweetStrings
+        
