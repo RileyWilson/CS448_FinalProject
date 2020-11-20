@@ -5,7 +5,7 @@ var rawData, topGroupedData, allTermData;
 var searchTerms, groupedSearchData;
 var parseTime = d3.timeParse("%Y-%m-%d"); // can i export this from lib1
 var height = 800;
-var width = 1200;
+var width = 1400;
 var margin = 100;
 var dataIndex = 1;
 
