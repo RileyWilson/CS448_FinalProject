@@ -52,10 +52,67 @@ textarea{
     color: #BB4430;
 }
 
+.tweet-div{
+    width: 300px;
+    color: #BB4430;
+    fill: #BB4430;
+    height: 400px;
+    margin-top: 20px;
+    float: left;
+    text-align: center;
+    margin-left: 100px;
+}
+
+.bubble-tooltip-content{
+    margin-top: 200px;
+}
+
+.bubble-div{
+    margin-bottom: 50px;
+}
+
+.bubble-svg{
+    float: right;
+}
+
+.viz-1-title{
+    fill: #231F20;
+    font-size: 28px;
+    text-align: center;
+    word-wrap: normal;
+    text-decoration: underline;
+    text-anchor: middle;
+    width: 1400;
+}
+
+.viz-1-title-container{
+    width: 1400;
+    font-size: 28px;
+    text-align: center;
+    word-wrap: normal;
+    text-decoration: underline;
+    text-anchor: middle;
+    width: 1400;
+}
+
+.bubble-sub-div{
+    width: 1400px;
+    height: 700px;
+}
+
 .search-div{
     background-color: #BB4430;
-    width: 100%;
-    margin: none;
+    width: 1400;
+    margin: 0px;
+    padding: 0px;
+}
+
+.bubble-button-div{
+    margin-bottom: 200px;
+}
+
+.bubble-buttons{
+    color:  #231F20
 }
 
 .tick {
