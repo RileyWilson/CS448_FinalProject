@@ -40,7 +40,7 @@ function searchForTerm(term){
             .attr('class', 'search-line')               
             .attr('d', d => lineGenerator(d.values))
             .attr('fill', 'none')
-            .attr('stroke', '#EFE6DD')
+            .attr('stroke', '#231F20')
             .attr('id', term)
             .attr('stroke-width', 2);
 
@@ -55,7 +55,7 @@ function searchForTerm(term){
     
         // Add label
         mySvg.append("text")
-            .attr("fill", '#EFE6DD')
+            .attr("fill", '#231F20')
             .attr("stroke-width", 3)
             .attr("x", lib1.plotVars.plotWidth - lib1.plotVars.plotMargin + 3)
             .attr("y", y)

@@ -4,7 +4,8 @@ html {
 
 body {
     background-color: #7EBDC2;
-    color: #231F20
+    color: #231F20;
+    margin: 0px;
 }
 
 h1 {
@@ -51,4 +52,20 @@ textarea{
     color: #BB4430;
 }
 
-.search-div
+.search-div{
+    background-color: #BB4430;
+    width: 100%;
+    margin: none;
+}
+
+.tick {
+    color:  #F3DFA2
+}
+
+.domain {
+    color:  #F3DFA2
+}
+
+.axis text{
+    fill: #F3DFA2;
+}
