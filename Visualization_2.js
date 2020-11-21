@@ -7,31 +7,15 @@ var parseTime = d3.timeParse("%Y-%m-%d"); // can i export this from lib1
 var height = 700;
 var width = 1400;
 var margin = 100;
-var dataIndex = 1;
+var gramN = 2;
 
 const main = async(params) => {
     displayTitle();
-    createPlot(dataIndex);
+    createPlot(gramN);
     addButtons();
     addInteraction();
     addVisualizationSection();
-    getTweet();
 }
-
-var getTweet = async () => {
-
-    try {
-        // Make request
-        const response = await lib2.getRequest();
-        console.log(response)
-
-    } catch(e) {
-        console.log(e);
-        //process.exit(-1);
-    }
-    //process.exit();
-}
-
 
 function addVisualizationSection(){
 
@@ -39,17 +23,14 @@ function addVisualizationSection(){
 }
 
 function addInteraction() {
-    console.log("adding interaction!");
     d3.selectAll('bubble')
-    //Our new hover effects
+
     .on('mouseover', function (d, i) {
-        console.log("hovering!");
         d3.select(this).transition()
              .duration('50')
              .attr("fill", '#F3DFA2');
     })
    .on('mouseout', function (d, i) {
-        console.log("bye!");
         d3.select(this).transition()
              .duration('50')
              .attr("fill", "#EFE6DD");
@@ -63,7 +44,7 @@ function addButtons(){
 
     let buttonsDiv = d3.select(".bubble-buttons");
     
-    buttonsDiv.append('p').text("Choose your data, bitch.");
+    buttonsDiv.append('p').text("Choose your n-grams.");
 
     let buttonsForm = buttonsDiv.append('form');
     
@@ -72,9 +53,9 @@ function addButtons(){
     let buttonLabel1 = buttonsForm.append("label");
     let buttonLabel2 = buttonsForm.append("label");
     let buttonLabel3 = buttonsForm.append("label");
-    buttonLabel1.attr("class", "bubble-button-label").attr("id", "bubble-button-label-1").text("1-Word Phrases");
-    buttonLabel2.attr("class", "bubble-button-label").attr("id", "bubble-button-label-2").text("2-Word Phrases");
-    buttonLabel3.attr("class", "bubble-button-label").attr("id", "bubble-button-label-3").text("3-Word Phrases");
+    buttonLabel1.attr("class", "bubble-button-label").attr("id", "bubble-button-label-1").text("1 Word");
+    buttonLabel2.attr("class", "bubble-button-label").attr("id", "bubble-button-label-2").text("2 Words");
+    buttonLabel3.attr("class", "bubble-button-label").attr("id", "bubble-button-label-3").text("3 Words");
 
     let button1 = buttonLabel1.append("input");
     let button2 = buttonLabel2.append("input");
@@ -94,13 +75,13 @@ function addButtons(){
     buttons.on('change', function(d) {
         d3.select(".bubble-svg").remove();
         if (this.value == "b1"){
-            dataIndex = 0;
+            gramN = 1;
         } else if (this.value == "b2"){
-            dataIndex = 1;
+            gramN = 2;
         } else {
-            dataIndex = 3;
+            gramN = 3;
         }
-        createPlot(dataIndex);
+        createPlot(gramN);
     });
 }
 
@@ -111,17 +92,19 @@ function displayTitle(){
     .attr('height', 50)
 
     // Add title info to graphic
+    /*
     titleSvg.append("text")
     .attr("fill", "#231F20")
     .attr("font-size", "28")
     .text("Top Tweeted COVID-Related N-Grams Since March 2020")    
     .attr('transform',
     'translate(' + ((width/2)) + ' ,' + 
-                    (40) + ')')
+                    (1) + ')')
     .attr('text-align', 'right')
     .attr('word-wrap', 'normal')
     .attr("text-decoration", "underline")
     .style('text-anchor', 'middle');
+    */
 }
 
 function pack(data){
@@ -137,19 +120,21 @@ function pack(data){
     return packer(hierarchy);
 }
 
-function createTooltip(svg){
+function createTooltip(/*svg*/){
     
+    /*
     var instructions = svg.append("text")
      .attr("class", "tooltip-instructions")
      .attr("width", "400px")
      .attr("height", "300px")
      .attr("text-align", "center")
-     .attr("x", 900)
-     .attr("y", 350)
+     .attr("x", 0)
+     .attr("y", 0)
      .attr("word-wrap", "normal")
      .text("Hover over a bubble to see a real tweet featuring that N-gram")
      .attr("font-size", "14px")
      .style("opacity", 1);
+
     
     var tooltip = svg.append("rect")
      .attr("class", "bubble-tooltip")
@@ -157,26 +142,39 @@ function createTooltip(svg){
      .attr("height", "300px")
      .attr("x", 900)
      .attr("y", 200)
+     .attr("fill", "#F3DFA2")
      .style("opacity", 0);
+    */
+    // Add text display for tweet
+    var content = d3.select(".bubble-tooltip-content")
+        .attr("class", "bubble-tooltip-content")
+        .attr("width", "400px")
+        .attr("height", "300px")
+        .attr("word-wrap", "normal")
+        .attr("text-align", "center")
+        .attr("x", 100)
+        .attr("y", 800)
+        .attr("opacity", 1)
+        .text("Hover over a bubble to see a real tweet featuring that N-gram");
 
-     return [tooltip, instructions];
+     return [/*tooltip, instructions, */content];
 }
 
 const createPlot = async (params) => {
     
-    var svg = d3.select(".bubble-div").append("svg");
-    svg.attr('width', width)
+    var svg = d3.select(".bubble-sub-div").append("svg");
+    svg.attr('width', 900)
     .attr('height', height)
     .attr('class', "bubble-svg")
     
-    var [tooltip, instructions] = createTooltip(svg)
+    var [/*tooltip, instructions, */content] = createTooltip(/*d3.select(".tweet-div")*/)
 
 
     lib2.getData().then((value) => {
         var data;
-        if (dataIndex == 0){
+        if (gramN == 1){
             data = value.terms;
-        } else if (dataIndex == 1){
+        } else if (gramN == 2){
             data = value.bigrams;
         } else {
             data = value.trigrams;
@@ -189,40 +187,13 @@ const createPlot = async (params) => {
             .enter().append("g")
             .attr("class", "bubble")
             .attr("transform", d => `translate(${d.x + 1},${d.y + 1})`)
-            .on('mouseover', function (d, i) {
-                d3.select(this).selectAll('circle').transition()
-                     .duration('50')
-                     .attr("fill", '#F3DFA2');
-                console.log("here's thos: " + this);
-                console.log("d: " + JSON.stringify(d));
-                console.log("i" + i.x);
-                //Makes the new div appear on hover:
-                
-                tooltip.transition()
-                    .duration(50)
-                    .style("opacity", 1);
-
-                //Makes the instruction text disappear
-                instructions.transition()
-                    .duration('50')
-                    .style("opacity", 0);
-
-                //let num = (Math.round((d.value / d.data.all) * 100)).toString() + '%';
+            .attr("value", d => d.data.term)
+            .on('mouseover', (d, i) => {
+                console.log("d is: " + JSON.stringify(i.data.term));
+                tooltipOn(i.data.term,/* tooltip, instructions, */content);
             })
-           .on('mouseout', function (d, i) {
-                d3.select(this).selectAll('circle').transition()
-                     .duration('50')
-                     .attr("fill", "#EFE6DD");
-
-                //Makes the new div disappear:
-                tooltip.transition()
-                    .duration('50')
-                    .style("opacity", 0);
-
-                //Makes the instruction text re-appear
-                instructions.transition()
-                    .duration('50')
-                    .style("opacity", 1);
+            .on('mouseout', function (d, i) {
+                tooltipOff(i.data.term,/* tooltip, instructions, */content);
            });
 
         leaf.append("circle")
@@ -248,5 +219,56 @@ const createPlot = async (params) => {
     });
 }
 
+function getTweet(term){
+    //let term = d.term;
+    //console.log("d: " + JSON.stringify(d));
+    lib2.getTweetData(term, gramN).then( (tweet) =>{
+        //console.log("tweet here: " + tweet);
+        return tweet;
+    });
+
+    //console.log("had term: " + term);
+    //console.log("so here: " + tweet);
+}
+
+function tooltipOn(term, /*tooltip, instructions, */content){
+    d3.select(this).selectAll('circle').transition()
+    .duration('50')
+    .attr("fill", '#F3DFA2');
+    /*
+    tooltip.transition()
+        .duration('60')
+        .style("opacity", 1);
+
+    instructions.transition()
+        .duration('60')
+        .style("opacity", 0);  */  
+        
+    content.transition()
+        .duration('60')
+        .style("opacity", 1);
+
+    getTweet(term);
+    
+}
+
+function tooltipOff(term, /*tooltip, instructions, */content){    
+    d3.select(this).selectAll('circle').transition()
+    .duration('60')
+    .attr("fill", "#EFE6DD");
+    /*
+    tooltip.transition()
+        .duration('60')
+        .style("opacity", 0);
+    
+    instructions.transition()
+        .duration('60')
+        .style("opacity", 1);
+    */
+    content.transition()
+        .duration('60')
+        .style("opacity", 1)
+        .text("Hover over a bubble to see a real tweet featuring that N-gram");
+}
 
 main();
