@@ -11,11 +11,17 @@ body {
 h1 {
     color: #231F20;
     font-family: "AppleGothic";
+}
 
+h2{
+    text-align: right;
+    width: 100%;
+    font-size: 20px;
 }
 
 p {
     color:#231F20;
+    text-align: center;
 }
 
 text{
@@ -40,6 +46,14 @@ textarea{
     margin: auto;
     padding-top: 20px;
     padding-bottom: 40px;
+    vertical-align: middle;
+}
+
+.section-body{
+    text-anchor: middle;
+    text-align: center;
+    display: block;
+    padding-bottom: 30px;
 }
 
 .section-div-1{
@@ -73,6 +87,11 @@ textarea{
 
 .bubble-svg{
     float: right;
+}
+
+#TermSearchBox{
+    margin-bottom: 15px;
+    margin-left: 50px;
 }
 
 .viz-1-title{

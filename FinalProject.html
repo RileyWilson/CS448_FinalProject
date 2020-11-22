@@ -3,25 +3,67 @@
 
 <head>
     <meta charset="utf-8">
-    <h1>Final Project - CS448</h1>
-    <h2>Riley Wilson</h2>
+    <h2>Riley Wilson: CS448 Final Project</h2>
     <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://d3plus.org/js/d3plus-text.v0.10.full.min.js"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
     <script src="./Visualization_1.js" type="module"></script>
     <script src="./Visualization_2.js" type="module"></script>
     <script src="./Visualization_3.js" type="module"></script>
+    <div class="Introduction">
+        <p class="section-header">How Twitter Talks About COVID-19</p>
+        <p class="section-body">
+            In 2020, with everyone from high schoolers to the President of the United States getting and 
+            sharing news on Twitter, the platform has become a way to tap into the pulse of current events 
+            and discourse.<br><br>
+            For this project, I used data from The Panacea Lab recording the top used terms and n-grams used 
+            every day since March in tweets related to COVID-19. I also scraped the data of all tweets that 
+            outgoing U.S. President Donald Trump has posted in 2020. I processed all this data with custom 
+            Python scripts in a number of ways to glean various forms of analysis from the underlying data. 
+            <br><br>
+            The following are three visualizations highlighting trends in the data and providing the user the 
+            opportunity to explore and interact with the data through graphic elements.
+        </p>
+    </div>
     <div class="bubble-div">
         <p class="section-header">Visualization 1</p>
-        <p class="section body">There will be a bunch of explanation stuff here!!</p>
+        <p class="section-body">Every day since the outbreak began at the beginning of 2020 thousands of tweets 
+            have been posted regarding COVID-19. The Panacea Lab data has analyzed and compiled 
+            the daily data to find the top n-grams (combinations of “n” terms) that appear in 
+            these tweets, and gathering the most popular terms of each day as well as 
+            holistically since the virus began.<br><br>
+
+            Below is an interactive and customizable visualization of the top n-grams (in total, 
+            from March to November) appearing in these analyzed tweets. You can use the radio 
+            buttons below to choose the “n”, allowing the selection of combinations of either 1, 2, 
+            or 3 words. Note the update of the visualization depending on the selection.  You can 
+            also use the slider to adjust the preferred top # of terms to be displayed in the visualization,
+            allowing the user to get a better sense of how certain terms related to similarly-frequent terms 
+            as well as much less frequent terms.
+            <br><br>
+            Each bubble represents one n-gram, with the size corresponding to the frequency, and a 
+            label including the total number of its’ appearances. For a real-life example of such a 
+            tweet for a given n-gram, simply hover the mouse over its bubble and notice the updated 
+            text appearing with the content of such a tweet. 
+            <br><br>
+            <b>NOTE</b>: For visual conciseness, due to the frequency of the (fairly long) word 
+            “coronavirus” in so many of the n-grams, it has been substituted in the multi-term n-grams 
+            with a star (★) icon. However, note that you will still see the original tweet appearing 
+            from the n-gram selected.</p>
         <div class="viz-1-title-container">
             <text class="viz-1-title">Top Tweeted COVID-Related N-Grams Since March 2020</text>
         </div>
         <div class="bubble-sub-div">
             <div class="tweet-div">
+                <div class="row align-items-center">
+                    Choose your # of N-grams!
+                    <div class="col-sm-2"><p id="value-slider"></p></div>
+                    <div class="col-sm"><div id="step-slider"></div></div>
+                  </div>
                 <div class="bubble-button-div"></div>
                 <text class="bubble-tooltip-content"></text>
             </div>
@@ -29,8 +71,30 @@
     </div>
     <div class="search-div">
         <p class="section-header">Visualization 2</p>
-        <p class="section body">There will be a bunch of explanation stuff here!!</p>
-        Do some searching
+        <p class="section-body">
+            Now that we have sifted around through the most frequent terms in summation, 
+            let’s dive a bit deeper into the changes/development of certain specific terms 
+            throughout our analyzed time window. Below, you will see a time-series graph 
+            mapping the frequency of certain words over time since the data collection began. 
+            <br><br>
+            I have plotted a few common terms to start with to illustrate the concept and be 
+            compared against. To explore the data further, enter a search term into the search 
+            box and click the button, at which point the term’s trajectory will be plotted for 
+            you for comparison against other similar terms. 
+            <br><br>
+            <b>Note</b>: If your chosen term doesn’t appear as a complete line, it was not consistently
+            one of the top 1000 terms used in the tweets we are studying. For an example of a common 
+            word, try searching “donald” or “covid”. 
+            <br><br>
+            For further analysis, this graph has been annotated with significant moments in the 
+            timeline of the progression of the coronavirus, so you can note what trends in term 
+            usage may have been related to events happening at that time. For instance, you will 
+            see a few notable features of the pre-drawn term lines, such as <b>[INSERT HERE OMG]</b>. 
+            </p>
+    </div>
+    <div class="trump-div">
+        <p class="section-header">Visualization 3</p>
+        <p class="section-body">There will be a bunch of explanation stuff here!!</p>
     </div>
     
 
