@@ -4,6 +4,7 @@ Data:
 - Zenodo: https://zenodo.org/record/3723940#.X7NmfBNKjlw
 - The Panacea Lab: https://github.com/thepanacealab/covid19_twitter
 - The Trump Archive: https://www.thetrumparchive.com/
+- Coronavirus timeline: https://www.thinkglobalhealth.org/article/updated-timeline-coronavirus
 
 D3/Javascript Coding Tips/Guidelines:
 - D3 documentation
@@ -14,3 +15,4 @@ D3/Javascript Coding Tips/Guidelines:
 - https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2
 - https://medium.com/@louisemoxy/create-a-d3-line-chart-animation-336f1cb7dd61
 - https://observablehq.com/@wolfiex/word-count-bubble-chart
+
