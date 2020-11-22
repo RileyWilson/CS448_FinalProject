@@ -12,7 +12,6 @@ import datetime
 import requests
 
 def searchTwitter(outfile):
-    #myReturnString = ""
     try:
     
         tuo = tw.TwitterUserOrder("realdonaldtrump")
@@ -31,8 +30,6 @@ def searchTwitter(outfile):
             access_token_secret = 'kBVXbCqKPnYvJWduRUQ2Q5H0gRFocZ4duWcoDrx8DqGLb'
         )
 
-        #allTweets = []
-        # this is where the fun actually starts :)
         count = 0
         subCount = 0
         for tweet in ts.search_tweets_iterable(tuo):
@@ -47,7 +44,7 @@ def searchTwitter(outfile):
             outfile.write(str(tweet))
 
 
-    except tw.TwitterSearchException as e: # take care of all those ugly errors if there are some
+    except tw.TwitterSearchException as e:
         print(e)
 
 def create_url():
@@ -83,26 +80,7 @@ def main():
 
     outfile = open(output_file, 'w')
     
-   # url = create_url()
-   # headers = create_headers()
-   # json_response = connect_to_endpoint(url, headers)
-   # print(json.dumps(json_response, indent=4, sort_keys=True))
-
-    #allWordToTweetMaps = {}
     searchTwitter(outfile)
-    #outfile.write(json.dumps(json_response, indent=4, sort_keys=True))
 
-
-# main invoked here    
 main()
-
-
-
-
-        #if word in allWordToTweetMaps:
-            #nothing
-           # print("hi")
-        #else:
-           # tweetStrings = searchTwitter([word]); 
-           # allWordToTweetMaps[word] = tweetStrings
         

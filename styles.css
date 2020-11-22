@@ -17,6 +17,7 @@ h2{
     text-align: right;
     width: 100%;
     font-size: 20px;
+    color: #EFE6DD;
 }
 
 p {
@@ -41,7 +42,6 @@ textarea{
     stroke: #BB4430;
     stroke-width: 2px;
     stroke-opacity: 1;
-    /*background-color: #BB4430;*/
     width: auto;
     margin: auto;
     padding-top: 20px;
@@ -54,6 +54,8 @@ textarea{
     text-align: center;
     display: block;
     padding-bottom: 30px;
+    width: 1000px;
+    margin: auto;
 }
 
 .section-div-1{
@@ -71,7 +73,7 @@ textarea{
     color: #BB4430;
     fill: #BB4430;
     height: 400px;
-    margin-top: 20px;
+    margin-top: px;
     float: left;
     text-align: center;
     margin-left: 100px;
@@ -127,7 +129,7 @@ textarea{
 }
 
 .bubble-button-div{
-    margin-bottom: 200px;
+    margin-bottom: 150px;
 }
 
 .bubble-buttons{

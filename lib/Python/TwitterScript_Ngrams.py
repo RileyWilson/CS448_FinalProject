@@ -13,10 +13,10 @@ import time
 def searchTwitter(keywords):
     myReturnString = ""
     try:
-        tso = tw.TwitterSearchOrder() # create TwitterSearchOrder
-        tso.set_keywords(keywords) # all words to search
-        tso.set_language('en') # English tweets only
-        tso.set_include_entities(False) # no entity info`
+        tso = tw.TwitterSearchOrder() 
+        tso.set_keywords(keywords) 
+        tso.set_language('en') 
+        tso.set_include_entities(False) 
 
         # Twitter credentials
         ts = tw.TwitterSearch(
@@ -26,21 +26,17 @@ def searchTwitter(keywords):
             access_token_secret = 'kBVXbCqKPnYvJWduRUQ2Q5H0gRFocZ4duWcoDrx8DqGLb'
         )
 
-        #allTweetStrings = []
-        # this is where the fun actually starts :)
         count = 0
         for tweet in ts.search_tweets_iterable(tso):
             #time.sleep(3)
             if (count >= 1):
                 break
             myString = '@%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] )
-            #print( '@%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] ) )
             print(myString)
             count += 1
             myReturnString += myString
-            #allTweetStrings.append(myString);
 
-    except tw.TwitterSearchException as e: # take care of all those ugly errors if there are some
+    except tw.TwitterSearchException as e:
         print(e)
 
     return myReturnString
@@ -63,8 +59,6 @@ def main():
     outfile = open(output_file, 'w')
     infile = open(input_file, 'r')
 
-    #allWordToTweetMaps = {}
-
     termIndex = 0
     reader = csv.reader(infile, delimiter=',')
     for row in reader:
@@ -75,20 +69,4 @@ def main():
         outfile.write(str({'term': word, 'tweets': tweetStrings, 'index': termIndex}))
         termIndex += 1
 
-
-    #outfile.write(str(allWordToTweetMaps))
-
-
-# main invoked here    
 main()
-
-
-
-
-        #if word in allWordToTweetMaps:
-            #nothing
-           # print("hi")
-        #else:
-           # tweetStrings = searchTwitter([word]); 
-           # allWordToTweetMaps[word] = tweetStrings
-        

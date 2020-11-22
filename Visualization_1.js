@@ -6,12 +6,12 @@ var searchTerms, groupedSearchData;
 var mySvg;
 var parseTime = d3.timeParse("%Y-%m-%d"); // can i export this from lib1
 
-
 const main = async(params) => {
     searchTerms = [];
     groupedSearchData = [];
     createPlot();
     createSearchable();
+    //annotatePlot();
 }
 
 function searchForTerm(term){
@@ -29,8 +29,8 @@ function searchForTerm(term){
             .duration(6500);
 
         var lineGenerator = d3.line()
-            .x(v => xScale(parseTime(v.date))) // date should go on the x-axis
-            .y(v => yScale(v.count));             // count should go on the y-axis
+            .x(v => xScale(parseTime(v.date)))
+            .y(v => yScale(v.count));  
 
         // Draw all lines
         mySvg.append('g')

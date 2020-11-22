@@ -34,11 +34,8 @@ def main():
     allDates = []
 
     for datum in data:
-        #print("datum: " + str(datum))
         date = datum["date"][0:10]
         print(date)
-
-
 
         if substring in date:
             if date in allDates:
@@ -46,7 +43,6 @@ def main():
             else:
                 allDates.append(date)
 
-                
             if date in allDateMaps:
                 allDateMaps[date].append(json.dumps(datum))
             else:
@@ -55,11 +51,6 @@ def main():
     for dateItem in allDates:
         print("adding data for date: " + dateItem)
         allDatesFinal.append({"date": dateItem, "tweets": allDateMaps[dateItem]})
-
-    #with open(infile) as f:
-
-        
-    #od = collections.OrderedDict(sorted(allDateMaps.items()))
 
     outfile.write(json.dumps(allDatesFinal))
 
