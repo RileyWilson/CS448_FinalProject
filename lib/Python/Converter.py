@@ -25,18 +25,8 @@ def main():
     infile = open(input_file, 'r')
 
     index = 0
-
     range = pd.date_range(pd.to_datetime('Mar 22, 2020'),periods=250)
-
-
-    print(range)
-
-    #skipped = False
-
     for line in infile:
-        #if (skipped == False):
-         #   skipped = True
-          #  continue
         day = int((index - (index % 1000))/1000)
         print(int(day))
         dateString = ",{}\n".format(range[day])
@@ -44,6 +34,4 @@ def main():
         outfile.write(newLine)
         index = index + 1
 
-
-# main invoked here    
 main()

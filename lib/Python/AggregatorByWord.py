@@ -39,6 +39,4 @@ def main():
 
     outfile.write(str(allWordMaps))
 
-
-# main invoked here    
 main()

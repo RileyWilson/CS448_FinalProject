@@ -1,15 +1,24 @@
 'use strict';
-import * as lib from './lib/lib.js'
+import * as lib3 from './lib/lib3.js'
 
-const createVisualization = async (params) => {
+var width = 1400;
+var tweetData;
 
-    let [rawData, groupedData] = await lib.getData();
-
-    // Visualization #3
-    let svg = d3.select("body").append("svg");
-    lib.createPlot(rawData, groupedData, svg);
-
-    return svg;
+const main = async(params) => {
+    displayTitle();
+    createPlot();
 }
 
-export {createVisualization};
+function displayTitle(){
+    var titleSvg = d3.select(".bubble-button-div").append("svg");
+    titleSvg.attr('width', width)
+    .attr('height', 50)
+}
+
+const createPlot = async (params) => {
+    
+    [tweetData] = await lib3.getData();
+
+}
+
+main();

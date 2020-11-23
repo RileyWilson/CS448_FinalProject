@@ -1,0 +1,18 @@
+Sources Used For Project: 
+
+Data:
+- Zenodo: https://zenodo.org/record/3723940#.X7NmfBNKjlw
+- The Panacea Lab: https://github.com/thepanacealab/covid19_twitter
+- The Trump Archive: https://www.thetrumparchive.com/
+- Coronavirus timeline: https://www.thinkglobalhealth.org/article/updated-timeline-coronavirus
+
+D3/Javascript Coding Tips/Guidelines:
+- D3 documentation
+- Twitter API documentation
+- Course materials
+- TwitterSearch Python library: https://twittersearch.readthedocs.io/en/latest/index.html
+- https://medium.com/codecakes/handling-radio-buttons-in-d3-js-9c6245c6157
+- https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2
+- https://medium.com/@louisemoxy/create-a-d3-line-chart-animation-336f1cb7dd61
+- https://observablehq.com/@wolfiex/word-count-bubble-chart
+

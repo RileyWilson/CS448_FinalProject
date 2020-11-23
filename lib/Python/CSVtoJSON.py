@@ -32,11 +32,9 @@ def main():
         term = row[0]
         count = row[1]
 
-        #allWordMaps[term] = count;
-        allWordMaps.append({"term": term, "count": count});
+        allWordMaps.append({"term": term, "count": count})
 
     outfile.write(str(allWordMaps))
 
 
-# main invoked here    
 main()
